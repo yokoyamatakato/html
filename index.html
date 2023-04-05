@@ -15,5 +15,24 @@
     <p><a href="overview.html">自己紹介概要ページ</a></p>
     <p><a href="detail.html">自己紹介詳細ページ</a></p>
     <p><a href="shinzin.html">新人トップページ</a></p>
+    <script>
+      const title = document.querySelector('h1');
+      title.addEventListener('click', function() {
+        alert('こんにちは、私の名前は[自分の名前]です！');
+      });
+    
+      const detailLink = document.querySelector('a[href="detail.html"]');
+      detailLink.addEventListener('click', function(event) {
+        event.preventDefault(); // リンクのデフォルトの動作を無効化する
+        fetch('detail.html') // 詳細ページの内容を取得する
+          .then(response => response.text())
+          .then(html => {
+            const detail = document.createElement('div');
+            detail.innerHTML = html;
+            document.body.appendChild(detail);
+          })
+          .catch(error => console.error(error));
+      });
+    </script>
   </body>
 </html>
